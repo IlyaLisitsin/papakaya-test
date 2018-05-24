@@ -20,12 +20,13 @@ export class ComparePanel extends Component {
             width = this.comparePanelBody.offsetWidth,
             height = this.comparePanelBody.offsetHeight;
         return (
-            <CompareWithItem 
-                key={item.id} 
-                product={product} 
-                item={item} 
-                calculations={ calculations(width, height) } 
+            <CompareWithItem
+                key={item.id}
+                product={product}
+                item={item}
+                calculations={ calculations(width, height) }
                 bodySize = {{width, height}}
+                currentMeasure={this.props.currentMeasure}
             />)
     }
 
@@ -48,7 +49,8 @@ let mapStateToProps = (state) => {
     return {
         currentMode: state.ControlPanel.currentMode,
         currentItems: state.ControlPanel.currentItems,
-        product: state.ComparePanel.product
+        product: state.ComparePanel.product,
+        currentMeasure: state.MeasureSettings.currentMeasure,
     };
 };
 

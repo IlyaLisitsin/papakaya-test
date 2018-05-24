@@ -6,6 +6,7 @@ import { ItemBox } from '../../components/ControlPanel/ItemBox';
 import ReactIScroll from 'react-iscroll';
 import iScroll from 'iscroll';
 import './controlPanel.css';
+import { mmToIn, mmToCm } from "../../core/utils";
 
 export class ControlPanel extends Component {
 
@@ -17,6 +18,22 @@ export class ControlPanel extends Component {
 
     isItemActive(item) {
         return this.props.currentItems.find(i => i.id === item.id);
+    }
+
+    itemSizeGen(item) {
+        const { currentMeasure } = this.props;
+
+        if (currentMeasure === 'in') return {
+            width: mmToIn(item.itemBoxThumb.width),
+            height: mmToIn(item.itemBoxThumb.height),
+            currentMeasure,
+        }
+
+        return {
+            width: mmToCm(item.itemBoxThumb.width),
+            height: mmToCm(item.itemBoxThumb.height),
+            currentMeasure,
+        }
     }
 
     render() {
@@ -38,8 +55,8 @@ export class ControlPanel extends Component {
                         <ul>
                             {
                                 Object.keys(this.props.modes).map(mode =>
-                                    this.props.modes[mode].items.map(item => 
-                                        <ItemBox item={item} isActive={this.isItemActive(item)} onHovered={this.itemHoveredHandler.bind(this, item, mode)} />
+                                    this.props.modes[mode].items.map(item =>
+                                        <ItemBox item={item} itemSize={this.itemSizeGen(item)} isActive={this.isItemActive(item)} onHovered={this.itemHoveredHandler.bind(this, item, mode)} />
                                     )
                                 )
                             }
@@ -54,7 +71,8 @@ export class ControlPanel extends Component {
 let mapStateToProps = (state) => {
     return {
         modes: state.ControlPanel.modes,
-        currentItems: state.ControlPanel.currentItems
+        currentItems: state.ControlPanel.currentItems,
+        currentMeasure: state.MeasureSettings.currentMeasure,
     };
 };
 
