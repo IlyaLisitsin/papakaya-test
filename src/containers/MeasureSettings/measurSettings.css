@@ -1,0 +1,41 @@
+.measure-switcher {
+    position: absolute;
+    z-index: 1000;
+    bottom: 14em;
+    left: 20px;
+}
+
+.radio {
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    padding: 7px 8px;
+    border: 1px solid #0e93dd;
+}
+
+.radio input {
+    display: none;
+}
+
+.radio span {
+    cursor: pointer;
+}
+
+.radio-active {
+    background: #0e93dd;
+}
+
+.radio-active span {
+    color: #fff;
+}
+
+.radio:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.radio:last-child {
+     border-top-right-radius: 3px;
+     border-bottom-right-radius: 3px;
+ }

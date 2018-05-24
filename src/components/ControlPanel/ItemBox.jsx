@@ -22,8 +22,8 @@ export const ItemBox = (props) => {
                 <div className="item-box__content-overlay">
                     <div className="content-overlay__title">
                         <span className="item-box__title">
-                            {props.item.itemBoxThumb.width && <span>W: {mmToIn(props.item.itemBoxThumb.width)} in</span>}&nbsp;
-                            {props.item.itemBoxThumb.height && <span>H: {mmToIn(props.item.itemBoxThumb.height)} in</span>}
+                            {props.item.itemBoxThumb.width && <span>W: {props.itemSize.width} {props.itemSize.currentMeasure}</span>}&nbsp;
+                            {props.item.itemBoxThumb.height && <span>H: {props.itemSize.height} {props.itemSize.currentMeasure}</span>}
                         </span>
                     </div>
                 </div>
